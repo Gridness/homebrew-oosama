@@ -1,3 +1,16 @@
+class IinaRequirement < Requirement
+  fatal true
+
+  satisfy(build_env: false) do
+    File.exist?("/Applications/IINA.app") || 
+    File.exist?(File.expand_path("~/Applications/IINA.app"))
+  end
+
+  def message
+    "IINA is required by anicli on macOS. Please install it with:\n  brew install --cask iina"
+  end
+end
+
 class Anicli < Formula
   desc "Find your favorite anime titles in the terminal and watch them with mpv"
   homepage "https://github.com/Gridness/anicli"
@@ -6,7 +19,7 @@ class Anicli < Formula
   depends_on :macos
 
   on_macos do
-    depends_on cask: "iina"
+    depends_on IinaRequirement
 
     if Hardware::CPU.arm?
       url "https://github.com/Gridness/anicli/releases/download/v0.2.0/anicli-v0.2.0-aarch64-apple-darwin.tar.gz"
