@@ -2,7 +2,7 @@ class IinaRequirement < Requirement
   fatal true
 
   satisfy(build_env: false) do
-    File.exist?("/Applications/IINA.app") || 
+    File.exist?("/Applications/IINA.app") ||
     File.exist?(File.expand_path("~/Applications/IINA.app"))
   end
 
@@ -15,18 +15,18 @@ class Anicli < Formula
   desc "Find your favorite anime titles in the terminal and watch them with mpv"
   homepage "https://github.com/Gridness/anicli"
   license "AGPL-3.0-or-later"
-  version "0.2.0"
+  version "0.3.0"
   depends_on :macos
 
   on_macos do
     depends_on IinaRequirement
 
     if Hardware::CPU.arm?
-      url "https://github.com/Gridness/anicli/releases/download/v0.2.0/anicli-v0.2.0-aarch64-apple-darwin.tar.gz"
-      sha256 "3eab414734f158faaf64add7be6dc692dcea5250b88d1b5fcbe57fc094c47495"
+      url "https://github.com/Gridness/anicli/releases/download/v0.3.0/anicli-v0.3.0-aarch64-apple-darwin.tar.gz"
+      sha256 "6273d028df4eb705ae306e6431b8c519575d8e222987bc6e7b2756546ba6fe9e"
     else
-      url "https://github.com/Gridness/anicli/releases/download/v0.2.0/anicli-v0.2.0-x86_64-apple-darwin.tar.gz"
-      sha256 "33890bae6354c4398a4478b26fe1dcdc6a1eaccedd868f837d856816817d56ea"
+      url "https://github.com/Gridness/anicli/releases/download/v0.3.0/anicli-v0.3.0-x86_64-apple-darwin.tar.gz"
+      sha256 "a5e2da9ee825fc645f98666357628e8ae1795a4bad83f3e7e9269164e2016b65"
     end
   end
 
