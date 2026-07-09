@@ -18,6 +18,8 @@ class Anicli < Formula
   version "0.3.0"
   depends_on :macos
 
+  deprecate! date: "2026-07-09", because: :unmaintained
+
   on_macos do
     depends_on IinaRequirement
 
