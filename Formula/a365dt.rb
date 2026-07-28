@@ -1,24 +1,24 @@
 class A365dt < Formula
   desc "Download Anime365 episodes without guessing translations"
   homepage "https://github.com/Gridness/a365dt"
-  version "0.7.2"
+  version "0.7.3"
   license "Apache-2.0"
   depends_on "ffmpeg-full" => :optional
   on_macos do
     depends_on arch: :arm64
     on_arm do
-      url "https://github.com/Gridness/a365dt/releases/download/v0.7.2/a365dt-v0.7.2-aarch64-apple-darwin.tar.gz"
-      sha256 "5c2791966b07b3ca596059f1d052234a146d773255ae3106d0172114d2be42dc"
+      url "https://github.com/Gridness/a365dt/releases/download/v0.7.3/a365dt-v0.7.3-aarch64-apple-darwin.tar.gz"
+      sha256 "b9aaaba810612b85f88a20069a32d96710cd8c0f8524c0e9b3817f5e3764111c"
     end
   end
   on_linux do
     on_arm do
-      url "https://github.com/Gridness/a365dt/releases/download/v0.7.2/a365dt-v0.7.2-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "ef7000da9682c5fbebf93141359879859def1b11036428ff2797337b49c2b787"
+      url "https://github.com/Gridness/a365dt/releases/download/v0.7.3/a365dt-v0.7.3-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "dc437463783c5837f740a2331a201bb34b24df7730fe7d2d983f4e597222c397"
     end
     on_intel do
-      url "https://github.com/Gridness/a365dt/releases/download/v0.7.2/a365dt-v0.7.2-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "c2a6099a469e4730a16e765873a9231e5d3b801e0944867c9a434337085b245b"
+      url "https://github.com/Gridness/a365dt/releases/download/v0.7.3/a365dt-v0.7.3-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "9684f9b8dc1236af5531071299f700b8f0faf1e2cf712adee380b5d1fd848e08"
     end
   end
   def install
