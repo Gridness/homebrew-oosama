@@ -1,6 +1,6 @@
 # homebrew-oosama
 
-My homebrew repositories
+My tap repository with formulas and casks I use
 
 ## Install
 
