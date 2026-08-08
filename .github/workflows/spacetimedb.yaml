@@ -166,7 +166,7 @@ jobs:
 
           echo "branch=$branch" >> "$GITHUB_OUTPUT"
 
-      - name: Open pull request
+      - name: Open and auto-merge pull request
         if: steps.update.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
@@ -177,22 +177,29 @@ jobs:
         run: |
           set -euo pipefail
 
-          pr_number="$(
+          pr_url="$(
             gh pr list \
               --head "$BRANCH" \
               --base "$DEFAULT_BRANCH" \
               --state open \
-              --json number \
-              --jq '.[0].number // empty'
+              --json url \
+              --jq '.[0].url // empty'
           )"
 
-          if [[ -n "$pr_number" ]]; then
-            echo "PR #${pr_number} already exists."
-            exit 0
+          if [[ -z "$pr_url" ]]; then
+            pr_url="$(
+              gh pr create \
+                --base "$DEFAULT_BRANCH" \
+                --head "$BRANCH" \
+                --title "spacetime ${VERSION}" \
+                --body "Automated Homebrew formula update for SpacetimeDB ${VERSION}."
+            )"
+          else
+            echo "PR already exists: $pr_url"
           fi
 
-          gh pr create \
-            --base "$DEFAULT_BRANCH" \
-            --head "$BRANCH" \
-            --title "spacetime ${VERSION}" \
-            --body "Automated Homebrew formula update for SpacetimeDB ${VERSION}."
+          gh pr merge "$pr_url" \
+            --auto \
+            --squash \
+            --delete-branch \
+            --match-head-commit "$(git rev-parse HEAD)"
