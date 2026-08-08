@@ -13,6 +13,30 @@ class Spacetime < Formula
     sha256 "b89e94cf8c85d05d7b8a44d3e714198c41c1a52509477a94d60c11e39331f9d9"
   end
 
+  def caveats
+    <<~EOS
+      This formula uses Homebrew for SpacetimeDB version management.
+      Upgrade with:
+
+        brew upgrade spacetime
+
+      SpacetimeDB stores user configuration and local database data
+      outside the Homebrew prefix. These are intentionally preserved
+      when the formula is uninstalled.
+
+      Default locations:
+
+        ~/.config/spacetime
+        ~/.local/share/spacetime/data
+
+      If you previously used the official SpacetimeDB installer, it may
+      also have installed version-managed binaries under:
+
+        ~/.local/share/spacetime/bin
+        ~/.local/bin/spacetime
+    EOS
+  end
+
   def install
     bin.install "spacetimedb-cli" => "spacetime"
     bin.install "spacetimedb-standalone"
